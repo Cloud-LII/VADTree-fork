@@ -77,6 +77,35 @@ DeepSeek-R1-Distill-Qwen-14B weight: [huggingface](https://huggingface.co/deepse
 
 # Quick Start (Example)
 Here we provide a quick start guide to run VADTree on UCF-Crime dataset.
+
+## Option 1: Automatic Execution (Recommended)
+We provide an automatic execution script that runs the entire VADTree pipeline. 
+
+### Usage:
+1. Edit the configuration variables in `run_vadtree.sh`:
+   - Set `VIDEO_DIR` to your video dataset path
+   - Set model paths: `GEBD_MODEL_WEIGHT`, `GEBD_MODEL_CONFIG`, `VLM_MODEL_DIR`, `LLM_MODEL_DIR`
+   - Adjust dataset selection and parameters if needed
+
+2. Run the script:
+```bash
+./run_vadtree.sh
+```
+
+The script will automatically:
+- Execute all 7 steps in sequence
+- Activate the appropriate conda environment for each step
+- Handle intermediate file paths automatically
+- Provide colored progress output
+- Skip steps with missing configurations (using existing intermediate results)
+
+### Features:
+- **Automatic path management**: No need to manually track intermediate file paths
+- **Error handling**: Exits on errors with clear messages
+- **Flexible execution**: Can skip video-dependent steps (1, 3, 5) if you only have intermediate results
+- **Progress tracking**: Clear visual feedback for each step
+
+## Option 2: Manual Step-by-Step Execution
 ### 1. GEBD boundary extraction
 You need to first configure the project environment of EfficientGEBD and the model weight file: GEBD_MODEL_WEIGHT and MODEL_CONFIG
 ```bash
